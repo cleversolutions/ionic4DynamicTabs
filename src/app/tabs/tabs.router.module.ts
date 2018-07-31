@@ -5,6 +5,7 @@ import { TabsPage } from './tabs.page';
 import { HomePage } from '../home/home.page';
 import { AboutPage } from '../about/about.page';
 import { ContactPage } from '../contact/contact.page';
+import { SplitPanePage } from '../split-pane/split-pane.page';
 
 const routes: Routes = [
   {
@@ -12,9 +13,14 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'home',
-        outlet: 'home',
-        component: HomePage
+        path: 'split-pane',
+        outlet: 'split-pane',
+        component: SplitPanePage,
+        children: [
+          {path: 'home', loadChildren: '../home/home.module#HomePageModule'},
+          {path: 'about', loadChildren: '../about/about.module#AboutPageModule'},
+          {path: 'contact', loadChildren: '../contact/contact.module#ContactPageModule'}
+        ]
       },
       {
         path: 'about',
@@ -25,12 +31,12 @@ const routes: Routes = [
         path: 'contact',
         outlet: 'contact',
         component: ContactPage
-      }
+      },
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/(home:home)',
+    redirectTo: '/tabs/(split-pane:split-pane/home)',
     pathMatch: 'full'
   }
 ];

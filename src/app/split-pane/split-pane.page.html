@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-split-pane>
+    <!--  our side menu  -->
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Split Pane Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item [routerLink]="['home']">Home</ion-item>
+          <ion-item [routerLink]="['/tabs', { outlets: { 'split-pane': 'split-pane/about' } }]">About</ion-item>
+          <ion-item [routerLink]="['contact']">Contact</ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <!-- the main content -->
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-content>
